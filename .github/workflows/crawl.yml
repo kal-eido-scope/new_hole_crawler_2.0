@@ -22,7 +22,7 @@ jobs:
 
     - name: crawl_json
       run: |
-        python main.py 
+        python main.py
     
     - name: crawl_img
       run: |
@@ -45,7 +45,7 @@ jobs:
         git config --global user.email 1978633500@qq.com
         git config --global user.name kaleidoscope
         git add .
-        git commit -m $MESSAGE -a
+        git commit -m $MESSAGE
 
     - name: git_push
       uses: ad-m/github-push-action@master
