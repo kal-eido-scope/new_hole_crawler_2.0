@@ -41,7 +41,7 @@ jobs:
         git config --global user.email 1978633500@qq.com
         git config --global user.name kaleidoscope
         git add .
-        git commit -m "Crawl_${{steps.time.outputs.time}}"
+        git commit -m "Crawl_${{steps.time.outputs.readableTime}}"
 
     - name: git_push
       uses: ad-m/github-push-action@master
