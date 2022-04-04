@@ -32,9 +32,9 @@ jobs:
       run: |
         python mov_down.py
 
-    - name: Remote Time
+    - name: Get Time
       id : time
-      uses: Plabick/Remote-Time-Action@1.01
+      uses: Plabick/Remote-Time-Action@1.0
       with:
         timezone: China Standard Time
 
@@ -43,7 +43,7 @@ jobs:
         git config --global user.email 1978633500@qq.com
         git config --global user.name kaleidoscope
         git add .
-        git commit -m "$Crawl_{{steps.time.outputs.dateTime}}"
+        git commit -m "Crawl_${{steps.time.outputs.epochTime}}"
 
     - name: git_push
       uses: ad-m/github-push-action@master
