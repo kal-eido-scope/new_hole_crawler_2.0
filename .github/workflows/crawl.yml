@@ -36,14 +36,14 @@ jobs:
       id : time
       uses: Plabick/Remote-Time-Action@1.01
       with:
-        timezone: utc+08
+        timezone: China Standard Time
 
     - name: git_add
       run: |
         git config --global user.email 1978633500@qq.com
         git config --global user.name kaleidoscope
         git add .
-        git commit -m "${{ steps.time.outputs.dateTime }}"
+        git commit -m "$Crawl_{{steps.time.outputs.dateTime}}"
 
     - name: git_push
       uses: ad-m/github-push-action@master
