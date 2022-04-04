@@ -40,7 +40,7 @@ jobs:
 
     - name: git_add
       env:
-        MESSAGE: "${Crawl_{ steps.current-time.outputs.time }}"
+        MESSAGE: "Crawl_${{ steps.current-time.outputs.time }}"
       run: |
         git config --global user.email 1978633500@qq.com
         git config --global user.name kaleidoscope
