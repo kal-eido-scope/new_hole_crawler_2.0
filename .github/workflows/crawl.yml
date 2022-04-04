@@ -34,7 +34,7 @@ jobs:
 
     - name: Get Time
       id : time
-      uses: Plabick/Remote-Time-Action@1.0
+      uses: Plabick/Remote-Time-Action@1.01
       with:
         timezone: China Standard Time
 
