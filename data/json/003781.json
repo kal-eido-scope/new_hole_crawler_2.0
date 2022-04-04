@@ -1,0 +1,1 @@
+{"code": 0, "data": {"allow_search": true, "attention": 0, "author_title": null, "blocked": false, "can_del": false, "comments": [], "cw": "test", "likenum": 1, "pid": 3781, "poll": {"answers": [{"option": "test", "votes": 5}, {"option": "test2", "votes": 5}], "vote": null}, "reply": 0, "text": "测试", "timestamp": 1639921255, "type": "text", "url": null}}

