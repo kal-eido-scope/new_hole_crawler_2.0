@@ -33,10 +33,24 @@ python img_confirm.py
 利用imghdr确认图片是否可打开（常用图片格式）
 ### img_reload.py 重新加载图片
 ```
-python img_reload.py
+python img_reload.py  --d bool      未下载部分重新下载
+                      --e bool      非图片（已损坏部分）重新下载
 ```
 为防止意外未能下载的图片，重新加载
 
+### mov_down.py 下载视频
+```
+python mov_down.py --start xxxxxx          开始项，若未指定则扫描已有mov数据库，并从pid最大项开始
+                   --scan  true/false      扫描模式，同上
+                   --end   xxxxxx          结束项，若未指定读取当前json数据最大值
+                                           若结束项小于开始项，则跳出
+```
+### mov_reload.py 重新加载图片
+```
+python mov_reload.py  --d bool      未下载部分重新下载
+```
+为防止意外未能下载的视频，重新加载
+**注：以上pid,img,mov目前均设置为最新SPACE条循环扫描**
 
 ### 特点
 * 包含日志文件，见[data/log](https://github.com/kal-eido-scope/new_hole_crawler_2.0/tree/main/data/log)部分
@@ -49,5 +63,4 @@ TOKEN   自定义token
 
 ## 待实现功能
 * scan模式根据最新条目确定扫描范围
-* img_down,img_reload，加入指定参数
 
