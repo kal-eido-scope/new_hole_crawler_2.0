@@ -29,18 +29,18 @@ jobs:
       run: |
           python mov_reload.py --d True
 
-    - name: Remote Time
+    - name: Get Time
       id : time
-      uses: Plabick/Remote-Time-Action@1.01
+      uses: josStorer/get-current-time@v2.0.0
       with:
-        timezone: utc+08
+        utcOffset: 8
 
     - name: git_add
       run: |
         git config --global user.email 1978633500@qq.com
         git config --global user.name kaleidoscope
         git add .
-        git commit -m "Reloaded_${{steps.time.outputs.dateTime}}" -a
+        git commit -m "Reload_${{steps.time.outputs.time}}"
      
     - name: git_push
       uses: ad-m/github-push-action@master
