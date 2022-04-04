@@ -36,7 +36,7 @@ jobs:
       id : time
       uses: josStorer/get-current-time@v2.0.0
       with:
-        utcOffset: 8
+        utcOffset: "+08:00"
 
     - name: git_add
       run: |
