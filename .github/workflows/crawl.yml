@@ -32,6 +32,11 @@ jobs:
       run: |
         python mov_down.py
 
+    - name: Setup timezone
+      uses: zcong1993/setup-timezone@master
+      with:
+        timezone: Asia/Beijing
+
     - name: Get Time
       id : time
       uses: josStorer/get-current-time@v2.0.0
