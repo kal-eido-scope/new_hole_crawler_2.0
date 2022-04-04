@@ -5,7 +5,7 @@ import requests
 import argparse
 import urllib3
 from time import sleep
-from main import scan_mode,get_max_pid,get_cur_pid,DATA_PATH,JSON_PATH,LOG_PATH,PROXY
+from main import SPACE, scan_mode,get_max_pid,get_cur_pid,DATA_PATH,JSON_PATH,LOG_PATH,PROXY
 from tqdm import tqdm
 urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 
@@ -101,7 +101,7 @@ def main():
             end_id = get_cur_pid()
         if end_id < start_id:
             end_id = start_id
-    #start_id,end_id=23544,23545
+    start_id,end_id=max_pid-SPACE,max_pid
     try:
         with open (ERROR_IMG_PATH,'r') as f:
             data_json = json.load(f)    #载入错误日志
