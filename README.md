@@ -20,34 +20,34 @@ python main.py    --token xxxxxx          此项目暂未生效
 ```
 ### img_down.py 下载图片
 ```
-python img_down.py --start xxxxxx          开始项，若未指定则扫描已有img数据库，并从pid最大项开始
-                   --scan  true/false      扫描模式，同上
-                   --end   xxxxxx          结束项，若未指定读取当前json数据最大值
-                                           若结束项小于开始项，则跳出
+python img_down.py --start xxxxxx         开始项，若未指定则扫描已有img数据库，并从pid最大项开始
+                   --scan  true/false     扫描模式，同上
+                   --end   xxxxxx         结束项，若未指定读取当前json数据最大值
+                                          若结束项小于开始项，则跳出
 ```
 
 ### img_confirm.py 确认图片
 ```
 python img_confirm.py
 ```
-利用imghdr确认图片是否可打开（常用图片格式）
+利用imghdr确认图片是否可打开（常用图片格式），imghdr对jpg和jpeg文件识别不佳
 ### img_reload.py 重新加载图片
 ```
-python img_reload.py  --d bool      未下载部分重新下载
-                      --e bool      非图片（已损坏部分）重新下载
+python img_reload.py  --d bool            未下载部分重新下载
+                      --e bool            非图片（已损坏部分）重新下载
 ```
 为防止意外未能下载的图片，重新加载
 
 ### mov_down.py 下载视频
 ```
-python mov_down.py --start xxxxxx          开始项，若未指定则扫描已有mov数据库，并从pid最大项开始
-                   --scan  true/false      扫描模式，同上
-                   --end   xxxxxx          结束项，若未指定读取当前json数据最大值
-                                           若结束项小于开始项，则跳出
+python mov_down.py    --start xxxxxx      开始项，若未指定则扫描已有mov数据库，并从pid最大项开始
+                      --scan  true/false  扫描模式，同上
+                      --end   xxxxxx      结束项，若未指定读取当前json数据最大值
+                                          若结束项小于开始项，则跳出
 ```
-### mov_reload.py 重新加载图片
+### mov_reload.py 重新加载视频
 ```
-python mov_reload.py  --d bool      未下载部分重新下载
+python mov_reload.py  --d bool            未下载部分重新下载
 ```
 为防止意外未能下载的视频，重新加载
 **注：以上pid,img,mov目前均设置为最新SPACE条循环扫描**
@@ -62,5 +62,5 @@ TOKEN   自定义token
 ```
 
 ## 待实现功能
-* scan模式根据最新条目确定扫描范围
+* 确定不同扫描模式，如定期从头开始，最新条目等
 
