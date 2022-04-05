@@ -2,7 +2,7 @@ import re,os,argparse,json,requests
 from tqdm import tqdm
 from urllib import parse
 from urllib.request import urlretrieve
-from main import DATA_PATH,LOG_PATH,JSON_PATH,get_max_pid,get_cur_pid,scan_mode
+from main import DATA_PATH,LOG_PATH,JSON_PATH,SPACE,get_max_pid,get_cur_pid,scan_mode
 
 MOV_PATH = os.path.join(DATA_PATH,'mov')
 MOV_PID_LIST = os.listdir(MOV_PATH)
@@ -97,7 +97,7 @@ def main():
             end_id = get_cur_pid()
         if end_id < start_id:
             end_id = start_id
-    #start_id,end_id=22281,22282
+    start_id,end_id=max_pid-SPACE,max_pid
     try:
         with open (ERROR_MOV_PATH,'r') as f:
             data_json = json.load(f)    #载入错误日志
