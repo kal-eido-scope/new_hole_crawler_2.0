@@ -34,7 +34,19 @@ def re_find(pid:int)->list:
         for comment_dict in p['data']['comments']:
             imgs.extend(re.findall(pattern,comment_dict['text']))
     return imgs
-
+def get_format_path(img:str,pid:int)->str:
+    for ext in IMG_EXTS:
+        if img.endswith(ext):
+            if img.endswith('.'+ext):
+                img_whole_name = os.path.split(img)[-1]
+                img_name = img_whole_name[-40:] if len(img_whole_name) >= 40 else img_whole_name
+            else:
+                img2 = re.sub('\W','~',img)
+                img_name = img2[-40:] if len(img2) >= 40 else img2
+                img_name += '.' + ext
+            img_path = os.path.join(IMG_PATH,'%0d'%pid,img_name)
+            return img_path
+    
 def get_img(pid:int,data_json:dict)->int:
     "0 for no img; 1 for success; 2 for errors happening"
     status_num = 0
@@ -43,17 +55,7 @@ def get_img(pid:int,data_json:dict)->int:
         status_num = 1
         os.makedirs(os.path.join(IMG_PATH,'%0d'%pid), exist_ok=True)
         for img in imgs:
-            for ext in IMG_EXTS:
-                if img.endswith(ext):
-                    if img.endswith('.'+ext):
-                        img_whole_name = os.path.split(img)[-1]
-                        img_name = img_whole_name[-40:] if len(img_whole_name) >= 40 else img_whole_name
-                    else:
-                        img2 = re.sub('\W','~',img)
-                        img_name = img2[-40:] if len(img2) >= 40 else img2
-                        img_name += '.' + ext
-                    img_path = os.path.join(IMG_PATH,'%0d'%pid,img_name)
-                    break
+            img_path = get_format_path(img,pid)
             if os.path.exists(img_path):
                 print('%d\timg skipped'%pid)
                 continue
@@ -77,12 +79,12 @@ def main():
     parser = argparse.ArgumentParser('T-hole.red Crawler')
     parser.add_argument('--start', type=int, help='Inclusion')
     parser.add_argument('--end', type=int, help='Exclusion')
-    parser.add_argument('--scan', type=bool, help='Scan Mode')
+    parser.add_argument('--scan', type=int, help='Scan Mode')
     args = parser.parse_args()
     s = requests.Session()
     max_pid = get_max_pid(s)
-    if args.scan:
-        start_id,end_id = scan_mode(max_pid)
+    if 1:
+        start_id,end_id = scan_mode(max_pid,1)
     else:
         if args.start:
             start_id = min(args.start,max_pid)
@@ -101,7 +103,7 @@ def main():
             end_id = get_cur_pid()
         if end_id < start_id:
             end_id = start_id
-    start_id,end_id=max_pid-SPACE,max_pid
+    #start_id,end_id=max_pid-SPACE,max_pid
     try:
         with open (ERROR_IMG_PATH,'r') as f:
             data_json = json.load(f)    #载入错误日志

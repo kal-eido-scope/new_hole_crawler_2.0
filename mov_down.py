@@ -73,12 +73,12 @@ def main():
     parser = argparse.ArgumentParser('T-hole.red Crawler')
     parser.add_argument('--start', type=int, help='Inclusion')
     parser.add_argument('--end', type=int, help='Exclusion')
-    parser.add_argument('--scan', type=bool, help='Scan Mode')
+    parser.add_argument('--scan', type=int, help='Scan Mode')
     args = parser.parse_args()
     s = requests.Session()
     max_pid = get_max_pid(s)
     if args.scan:
-        start_id,end_id = scan_mode(max_pid)
+        start_id,end_id = scan_mode(max_pid,args.scan)
     else:
         if args.start:
             start_id = min(args.start,max_pid)
