@@ -128,7 +128,7 @@ def main():
     f = open (ERROR_JSON_PATH,'w+')     #打开错误列表写入状态
     try:
         start_id,end_id = scan_mode(max_pid) if args.scan else process_start_end(args.start,args.end,max_pid)
-        #start_id,end_id = 23268,23269
+        start_id,end_id=max_pid-SPACE,max_pid
         for pid in tqdm(range(start_id,end_id), desc='Posts'):
             st_code = get_content(pid,s,data_json)
             tqdm.write(f'Request post:{pid},status_code:{st_code}')
