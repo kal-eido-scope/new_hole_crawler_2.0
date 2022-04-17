@@ -60,7 +60,7 @@ def get_img(pid:int,data_json:dict)->int:
                 print('%d\timg skipped'%pid)
                 continue
             try:
-                img_get = requests.get(img,verify=False,proxies=PROXY)#urlretrieve(img)
+                img_get = requests.get(img,verify=False,proxies=PROXY,timeout=600)#urlretrieve(img)
                 status_code = img_get.status_code
             except:
                     status_code = 404
