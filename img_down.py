@@ -5,7 +5,7 @@ import requests
 import argparse
 import urllib3
 from time import sleep
-from main import SPACE, scan_mode,get_max_pid,get_cur_pid,DATA_PATH,JSON_PATH,LOG_PATH,PROXY
+from main import get_cur_pid, scan_mode,get_max_pid,DATA_PATH,JSON_PATH,LOG_PATH,SPACE
 from tqdm import tqdm
 urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 
@@ -60,7 +60,7 @@ def get_img(pid:int,data_json:dict)->int:
                 print('%d\timg skipped'%pid)
                 continue
             try:
-                img_get = requests.get(img,verify=False,proxies=PROXY,timeout=600)#urlretrieve(img)
+                img_get = requests.get(img,verify=False,timeout=600)#urlretrieve(img)
                 status_code = img_get.status_code
             except:
                     status_code = 404
@@ -81,9 +81,8 @@ def main():
     parser.add_argument('--end', type=int, help='Exclusion')
     parser.add_argument('--scan', type=int, help='Scan Mode')
     args = parser.parse_args()
-    s = requests.Session()
-    max_pid = get_max_pid(s)
-    if 1:
+    max_pid = get_max_pid()
+    if args.scan:
         start_id,end_id = scan_mode(max_pid,1)
     else:
         if args.start:
@@ -115,8 +114,11 @@ def main():
             status_num = get_img(pid,data_json)
             tqdm.write(f'pid:{pid},Status:{STATUS_MESSAGE[status_num]}')
         json.dump(data_json,f)
-    except:
+    except Exception as e:
         json.dump(data_json,f)      #意外恢复
+        print(e)
+        print(e.__traceback__.tb_frame.f_globals["__file__"])
+        print(e.__traceback__.tb_lineno)
     f.close()
 
 if __name__ == '__main__':

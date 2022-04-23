@@ -76,7 +76,7 @@ def main():
     parser.add_argument('--scan', type=int, help='Scan Mode')
     args = parser.parse_args()
     s = requests.Session()
-    max_pid = get_max_pid(s)
+    max_pid = get_max_pid()
     if args.scan:
         start_id,end_id = scan_mode(max_pid,args.scan)
     else:
@@ -97,7 +97,7 @@ def main():
             end_id = get_cur_pid()
         if end_id < start_id:
             end_id = start_id
-    start_id,end_id=max_pid-SPACE,max_pid
+    #start_id,end_id=max_pid-SPACE,max_pid
     try:
         with open (ERROR_MOV_PATH,'r') as f:
             data_json = json.load(f)    #载入错误日志

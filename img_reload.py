@@ -5,7 +5,7 @@ import os
 import requests
 import argparse
 import re
-from img_down import get_format_path, re_find,IMG_PATH,ERROR_IMG_PATH,PROXY,IMG_EXTS
+from img_down import get_format_path, re_find,IMG_PATH,ERROR_IMG_PATH,IMG_EXTS
 from img_confirm import NOT_AN_IMAGE_PATH
 
 def reload_image(error_img_log:dict):
@@ -18,7 +18,7 @@ def reload_image(error_img_log:dict):
             flag = True
             img_path = get_format_path(img,pid)
             try:
-                img_get = requests.get(img,verify=False,proxies=PROXY)
+                img_get = requests.get(img,verify=False)
                 status_code = img_get.status_code
             except:
                     status_code = 404
@@ -51,7 +51,7 @@ def reload_url(error_imgs):
             url = recover_url(pid,fn)
             img_path = get_format_path(url,pid)
             try:
-                img_get = requests.get(url,verify=False,proxies=PROXY)
+                img_get = requests.get(url,verify=False)
                 status_code = img_get.status_code
             except:
                     status_code = 404
