@@ -20,11 +20,14 @@ jobs:
         pip install tqdm
         pip install argparse
     
-    - name: img_reload
+    - name: img_confirm
       run: |
           python img_confirm.py
+          
+    - name: img_reload
+      run: |
           python img_reload.py --d True --e True
-    
+          
     - name: mov_reload
       run: |
           python mov_reload.py --d True
