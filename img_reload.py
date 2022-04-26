@@ -28,7 +28,7 @@ def reload_image(error_img_log:dict):
                 print('%d\tAn img dowloaded.'%pid)
             else:
                 flag = False
-                new_values.append({values:status_code})
+                new_values.append({list(value)[0]:status_code})
                 print('%d\tAn img failed.'%pid)
         if flag:
             error_img_log.pop(pid_str)
@@ -80,26 +80,36 @@ def main():
             with open(ERROR_IMG_PATH,'r')as f:
                 error_img_log = json.load(f)
             reload_image(error_img_log)
-        except:
+        except Exception as e:
+            print(e)
+            print(e.__traceback__.tb_frame.f_globals["__file__"])
+            print(e.__traceback__.tb_lineno)
             sys.exit()
         try:
             with open(ERROR_IMG_PATH,'w+')as f:
                 json.dump(error_img_log,f)
-        except:
-            pass
+        except Exception as e:
+            print(e)
+            print(e.__traceback__.tb_frame.f_globals["__file__"])
+            print(e.__traceback__.tb_lineno)
         
     if args.e:    
         try:
             with open(NOT_AN_IMAGE_PATH,'r')as f:
                 error_imgs = json.load(f)
             reload_url(error_imgs)
-        except:
+        except Exception as e:
+            print(e)
+            print(e.__traceback__.tb_frame.f_globals["__file__"])
+            print(e.__traceback__.tb_lineno)
             sys.exit()
         try:
             with open(NOT_AN_IMAGE_PATH,'w+')as f:
                 json.dump(error_imgs,f)
-        except:
-            pass
+        except Exception as e:
+            print(e)
+            print(e.__traceback__.tb_frame.f_globals["__file__"])
+            print(e.__traceback__.tb_lineno)
 
 if __name__ == '__main__':
     main()
