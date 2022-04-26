@@ -13,7 +13,7 @@ LOG_PATH = os.path.join(DATA_PATH,'log')                    #log文件夹路径
 ERROR_JSON_PATH = os.path.join(LOG_PATH,'error_json.json')  #json错误日志路径
 
 API_ROOT = 'https://t-hole.red/_api/v1/'
-SPACE = 1000
+SPACE = 1200
 TOKEN = '39fzRQwSVvkB3x1P'
 #PROXY = {'http':'123.56.231.232'}
 HEADERS = {'User-Token':TOKEN}
