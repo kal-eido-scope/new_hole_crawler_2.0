@@ -1,8 +1,9 @@
 import os
 import json
 import re
-from main import JSON_PATH
-
+DATA_PATH = os.path.join(os.path.dirname(os.path.dirname(__file__)), 'data')
+JSON_PATH = os.path.join(DATA_PATH,'json')
+RESULT_PATH = os.path.join(os.path.dirname(__file__),'result.json')
 def find(text:str)->dict:
     result = {}
     result['text']=text
@@ -29,7 +30,7 @@ def find(text:str)->dict:
 def main():
     text = input('Enter what you want to find:\n')
     result = find(text)
-    with open('temp.json','wb+')as f:
+    with open(RESULT_PATH,'ab+')as f:
         f.write(json.dumps(result,ensure_ascii=False,indent=4).encode('utf-8'))
     print(json.dumps(result,ensure_ascii=False,indent=4))
 if __name__ == '__main__':
