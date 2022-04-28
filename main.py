@@ -87,6 +87,30 @@ def get_comment(pid:int)->list:
         return {}
     else:
         return w
+def comment_process(comment:dict,cur_comments:list)->list:
+    flag = True
+    for cur_comment in cur_comments:
+        if comment['timestamp'] == cur_comment['timestamp']:
+            if comment['text'] == cur_comment['text']:
+                if comment['name_id'] == cur_comment['name_id']:
+                    flag = False#if comment.get('pid'):  #判断新旧版本标准，存在则采用新版本
+    if flag:
+        new_version = {
+                "author_title": comment['author_title'],
+                "blocked": comment['blocked'],
+                "blocked_count": 0,
+                "can_del": comment['can_del'],
+                "cid": -1,
+                "create_time": comment['timestamp'],
+                "is_blocked": False,
+                "is_tmp": False,
+                "name_id": comment['name_id'],
+                "text": comment['text'],
+                "timestamp": comment['timestamp']
+            }
+        cur_comments.append(new_version)
+        print('one old comment has been modified and added')
+    return cur_comments
 
 def renew_content(r:requests.Response,pid:int,post_path:str,data_json:dict):
     """更新json文件"""
@@ -126,8 +150,7 @@ def renew_content(r:requests.Response,pid:int,post_path:str,data_json:dict):
                 past_version = json.load(f)
             if past_version['data']['comments']:
                 for comment in past_version['data']['comments']:
-                    if comment not in cur_comments:
-                        cur_comments.append(comment)
+                    cur_comments = comment_process(comment,cur_comments)
             else:
                 req['data']['comments'] = cur_comments
             req['data']['comments'] = sorted(cur_comments,key = lambda x:x['cid'])
