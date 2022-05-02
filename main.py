@@ -118,6 +118,8 @@ def renew_content(r:requests.Response,pid:int,post_path:str,data_json:dict):
     comments_req = get_comment(pid)
     if comments_req:
         comments = comments_req['data']
+    else:
+        comments = []
     if req['code']==-1: #错误
         if not os.path.exists(post_path):   #错误且之前不存在则写入
             with open (post_path,'w',encoding='utf-8') as f:
