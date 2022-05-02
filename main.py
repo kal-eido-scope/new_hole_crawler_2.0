@@ -93,8 +93,10 @@ def comment_process(comment:dict,cur_comments:list)->list:
         if comment['timestamp'] == cur_comment['timestamp']:
             if comment['text'] == cur_comment['text']:
                 if comment['name_id'] == cur_comment['name_id']:
-                    flag = False#if comment.get('pid'):  #判断新旧版本标准，存在则采用新版本
-    if flag:
+                    if comment.get('pid'):
+                        flag = False  #判断新旧版本标准，存在则采用新版本
+                        break
+    if not flag:
         new_version = {
                 "author_title": comment['author_title'],
                 "blocked": comment['blocked'],
