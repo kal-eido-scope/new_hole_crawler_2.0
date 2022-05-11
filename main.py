@@ -198,7 +198,7 @@ def get_max_pid()->int:
     GET_PAGE = API_ROOT + '/getlist?p=1&order_mode=0'
     headers = {'User-Token': TOKEN}
     r = requests.get(GET_PAGE,headers=headers)
-    max_pid = r.json()['data'][0]['pid']
+    max_pid = r.json()['data'][1]['pid']
     if type(max_pid)==int:
         return max_pid
     else:
