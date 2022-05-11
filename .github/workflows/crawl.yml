@@ -1,6 +1,6 @@
 name : Crawl New hole
 on :
-  push
+  workflow_dispatch
     
 jobs:
   crawling:
