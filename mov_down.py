@@ -103,7 +103,7 @@ def main():
             end_id = get_cur_pid()
         if end_id < start_id:
             end_id = start_id
-    start_id,end_id=22281,22282
+    #start_id,end_id=22281,22282
     try:
         with open (ERROR_MOV_PATH,'r') as f:
             data_json = json.load(f)    #载入错误日志
