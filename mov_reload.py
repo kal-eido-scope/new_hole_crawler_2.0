@@ -1,5 +1,5 @@
 import os,argparse,json,sys
-from mov_down import MOV_PATH,ERROR_MOV_PATH,format_mov_name,get_type
+from mov_down import MOV_PATH,ERROR_MOV_PATH,format_mov_name,get_type, url_down
 from urllib.request import urlretrieve
 def reload_movie(error_mov_log:dict):
     for pid_str,values in error_mov_log.copy().items():
@@ -12,7 +12,7 @@ def reload_movie(error_mov_log:dict):
             url_name = format_mov_name(url,ext)
             mov_path = os.path.join(MOV_PATH,'%0d'%pid,url_name)
             try:
-                urlretrieve(url,mov_path)
+                url_down(url,mov_path)
             except:
                 print('%d\tA movie failed.'%pid)
                 flag = False
