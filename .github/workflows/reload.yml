@@ -19,6 +19,7 @@ jobs:
         pip install requests
         pip install tqdm
         pip install argparse
+        pip install func_timeout
     
     - name: img_confirm
       run: |
