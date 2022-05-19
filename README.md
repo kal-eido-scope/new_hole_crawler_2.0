@@ -3,11 +3,11 @@
 
 ## 需要安装的包
 ```
-pip install tqdm,argparse,requests
+pip install tqdm,argparse,requests,func_timeout
 ```
 or
 ```
-pip3 install tqdm,argparse,requests
+pip3 install tqdm,argparse,requests,func_timeout
 ```
 
 ## 使用说明
